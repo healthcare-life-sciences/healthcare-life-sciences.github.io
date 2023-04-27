@@ -29,6 +29,13 @@
 </head>
 
 <body>
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+  </script>
 
   <!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center ">
@@ -47,10 +54,10 @@
           <li><a class="nav-link scrollto" href="#submissions">Submissions</a></li>
           <!-- <li><a class="nav-link scrollto" href="special-issue.html">Special Issue</a></li> -->
           <!-- <li><a class="nav-link scrollto" href="#speakers">Speakers</a></li> -->
-          <!--<li><a class="nav-link scrollto" href="#schedule">Schedule</a></li>-->
+          <<li><a class="nav-link scrollto" href="#schedule">Schedule</a></li>
           <li><a class="nav-link scrollto" href="#organizers">Organizers</a></li>
-          <!--<li><a class="nav-link scrollto" href="#speakers">Speakers</a></li>-->
-          <!--<li><a class="nav-link scrollto" href="#sponsors">Sponsors</a></li>-->
+          <li><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
+          <li><a class="nav-link scrollto" href="#sponsors">Sponsors</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li class="dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="prior_years" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -133,7 +140,8 @@
               <li>Real-world use cases that create or consume HCLS knowledge graphs</li>
             </ul>
           <p>The extended abstracts must be 1-page long (references excluded), in single-column (full page) format, with at least 1-inch margins, and font size of 11pt (times roman) or higher.</p>
-          <p>Please submit your abstracts at <a href="https://easychair.org/conferences/?conf=kgchcls23">https://easychair.org/conferences/?conf=kgchcls23</a> no later than <b>March 31, 2023 11:59 AoE</b>.</p>
+          <!--<p>Please submit your abstracts at <a href="https://easychair.org/conferences/?conf=kgchcls23">https://easychair.org/conferences/?conf=kgchcls23</a> no later than <b>March 31, 2023 11:59 AoE</b>.</p>-->
+          <p> SUBMISSIONS ARE CLOSED!</p>
 
           <h3>Important Dates</h3>
           <table class="table table-striped table-hover">
@@ -159,7 +167,7 @@
     <!-- End CFP Section -->
 
     <!-- ======= Schedule Section ======= -->
-<!--    <section id="schedule" class="section-with-bg">
+    <section id="schedule" class="section-with-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
@@ -170,282 +178,31 @@
 
             <p><sup>*</sup><i>All times are in EDT.</i></p>
 
-            <div class="row schedule-item">
-              <h4>Keynote<span></span></h4>
-              <p><b>Chair:</b> Jamie McCusker</p>
-            </div>
+            <div v-for="session in schedule">
+              <div class="row schedule-item">
+                <h4>{{session.label}}<span></span></h4>
+                <p v-if="session.chair"><b>Chair:</b> {{session.chair}}</p>
+              </div>
 
-            <div class="row schedule-item">
-              <div class="col-md-2"><time>09:00 AM</time></div>
-              <div class="col-md-10">
-                <a href="michel.html">
+
+              <div v-for="p in session.presentations" class="row schedule-item">
+                <div class="col-md-2"><time>{{p.time}}</time></div>
+                <div class="col-md-10" v-if="p.presenter">
                   <div class="speaker">
-                    <img src="assets/img/speakers/michel.jpg" alt="Michel Dumontier">
+                    <img v-bind:src="people[p.presenter].image" v-bind:alt="people[p.presenter].name">
                   </div>
-                  <h4><span>Michel Dumontier</span></h4>
-                  <p>Data-Driven Discovery Science with FAIR Knowledge Graphs  | [Remote] </p>
-                </a>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-               <h4>Session 1 <span></span></h4>
-                 <p><b>Chair:</b> Jamie McCusker</p>
-              </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2">
-                <time>9:50 AM</time>
-              </div>
-              <div class="col-md-10">
-                <p>
-                  <div class="speaker">
-                    <img src="assets/img/speakers/Matthias.png" alt="Matthias Nolte">
-                  </div>
-                  <a href="matthias.html">
-                    <h4><span>Matthias Nolte</span></h4>
-                    <p>Semantic Chemical Data Management – From FAIR to IDMP Compliance | [Remote] </p>
-                  </a>
-                </p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2">
-                <time>10:10 AM</time>
-              </div>
-              <div class="col-md-10">
-                  <div class="speaker">
-                    <img src="assets/img/speakers/Benjamin.png" alt="Benjamin Gyori">
-                  </div>
-                  <a href="benjamin.html">
-                    <h4><span>Benjamin Gyori</span></h4>
-                    <p>An automatically assembled knowledge graph from literature-extracted molecular biology knowledge with human-machine dialogue to support biomedical discovery | [In-Person] </p>
-                  </a>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2">
-                <time>10:30 AM</time>
-              </div>
-              <div class="col-md-10">
-                  <div class="speaker">
-                    <img src="assets/img/speakers/Shashank.png" alt="Shashank Jatav">
-                  </div>
-                  <a href="shashank.html">
-                    <h4><span>Shashank Jatav</span></h4>
-                    <p>Building a knowledge graph of biomedical entities (genes, diseases, proteins, pathways) using a gene signature representing a particular disease condition or perturbation using half a million FAIR dataset | [Remote] </p>
-                  </a>
-              </div>
-            </div>
-
-
-            <div class="row schedule-item">
-              <div class="col-md-2">
-                <time>10:50 AM</time>
-              </div>
-              <div class="col-md-10">
-                  <div class="speaker">
-                    <img src="assets/img/speakers/Tiffany.png" alt="Tiffany Callahan">
-                  </div>
-                  <a href="tiffany.html">
-                    <h4><span>Tiffany Callahan</span></h4>
-                    <p>An Open-Source Knowledge Graph Ecosystem for the Life Sciences | [In-Person] </p>
-                  </a>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <h4>Session 2 <span></span></h4>
-              <p><b>Chair:</b> Ching-Hua Chen</p>
-            </div>
-
-
-            <div class="row schedule-item">
-              <div class="col-md-2">
-                <time>11:20 AM</time>
-              </div>
-              <div class="col-md-10">
-                <div class="speaker">
-                  <img src="assets/img/speakers/Richard.png" alt="Richard Wallace">
+                  <h4><span>{{people[p.presenter].name}} - {{people[p.presenter].affiliation}}</span></h4>
+                  <p>{{people[p.presenter].title}} | [{{p.status}}] </p>
                 </div>
-                <a href="richard.html">
-                  <h4><span>Richard Wallace, Franz Inc. (Sponsor Talk)</span></h4>
-                  <p>Why You Will Build an Entity-Event Knowledge Graph, perspectives from the field? | [In-Person] </p>
-                </a>
-            </div>
-          </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2">
-                <time>11:50 AM</time>
-              </div>
-              <div class="col-md-10">
-                <h4>Panel Discussion: FAIR data in HCLS KG</h4>
-                <p>Panelists: Michel Dumontier, Matthias Nolte, Benjamin Gyori, Shashank Jatav, Tiffany Callahan, Jamie McCusker, Tom Plasterer, Filip Pattyn</p>
-                <p>Moderator: Ching-Hua Chen</p>
-              </div>
-            </div>
-
-            <div class="row schedule-item">
-              <div class="col-md-2">
-                <time>12:20 PM</time>
-              </div>
-              <div class="col-md-10">
-                <h4>Coffee and Chat / Lunch<span></span></h4>
-              </div>
-          </div>
-
-          <div class="row schedule-item">
-            <h4>Keynote<span></span></h4>
-             <p><b>Chair:</b> Tom Plasterer</p>
-         </div>
-
-          <div class="row schedule-item">
-            <div class="col-md-2"><time>1:10 PM</time></div>
-            <div class="col-md-10">
-              <a href="berenice.html">
-                <div class="speaker">
-                  <img src="assets/img/speakers/berenice.jpeg" alt="Bérénice Wulbrecht">
+                <div class="col-md-10" v-if="!p.presenter">
+                  <h4>
+                    {{p.label}} <span></span>
+                  </h4>
                 </div>
-                <h4><span>Bérénice Wulbrecht</span></h4>
-                <p>Data Driven Decisions in Life Sciences powered by Knowledge Graphs. Example on Clinical Trials information | [In-Person] </p>
-              </a>
+              </div>
             </div>
-          </div>
-
-          <div class="row schedule-item">
-            <h4>Session 3 <span></span></h4>
-            <p><b>Chair:</b> Deborah McGuinness</p>
-          </div>
-
-         <div class="row schedule-item">
-           <div class="col-md-2">
-             <time>2:00 PM</time>
-           </div>
-           <div class="col-md-10">
-             <p>
-               <div class="speaker">
-                 <img src="assets/img/speakers/Payal.png" alt="Payal Mitra">
-               </div>
-               <a href="payal.html">
-                 <h4><span>Payal Mitra</span></h4>
-                 <p>EpiMap: Predicting Epigenetic Targets with Triage Queries and KG Embedding Models | [Remote] </p>
-               </a>
-             </p>
-           </div>
-         </div>
-
-         <div class="row schedule-item">
-          <div class="col-md-2">
-            <time>2:30 PM</time>
-          </div>
-          <div class="col-md-10">
-            <h4>Exhibits<span></span></h4>
-          </div>
-        </div>
-
-        <div class="row schedule-item">
-          <h4>Session 4 <span></span></h4>
-          <p><b>Chair:</b> Oshani Seneviratne</p>
-        </div>
-
-        <div class="row schedule-item">
-          <div class="col-md-2">
-            <time>3:00 PM</time>
-          </div>
-          <div class="col-md-10">
-            <p>
-              <div class="speaker">
-                <img src="assets/img/speakers/Enayat.png" alt="Enayat Rajabi">
-              </div>
-              <a href="enayat.html">
-                <h4><span>Enayat Rajabi</span></h4>
-                <p>Creating a Healthcare Knowledge Graph from Statistical Open Data | [Remote] </p>
-              </a>
-            </p>
-          </div>
-        </div>
-
-        <div class="row schedule-item">
-          <div class="col-md-2">
-            <time>3:20 PM</time>
-          </div>
-          <div class="col-md-10">
-            <p>
-              <div class="speaker">
-                <img src="assets/img/speakers/Ravi.png" alt="Ravi Bajracharya">
-              </div>
-              <a href="ravi.html">
-                <h4><span>Ravi Bajracharya</span></h4>
-                <p>Biomedical Knowledge Graph: Build and Usage | [In-Person] </p>
-              </a>
-            </p>
-          </div>
-        </div>
-
-        <div class="row schedule-item">
-          <div class="col-md-2">
-            <time>3:40 PM</time>
-          </div>
-          <div class="col-md-10">
-            <p>
-              <div class="speaker">
-                <img src="assets/img/speakers/Sixing.png" alt="Sixing Huang">
-              </div>
-              <a href="sixing.html">
-                <h4><span>Sixing Huang</span></h4>
-                <p>Doctor.ai: Navigate a Medical Knowledge Graph using English | [Remote] </p>
-              </a>
-            </p>
-          </div>
-        </div>
-
-        <div class="row schedule-item">
-          <div class="col-md-2">
-            <time>4:00 PM</time>
-          </div>
-          <div class="col-md-10">
-            <h4>Panel Discussion: Healthcare KG Applications</h4>
-            <p>Panelists: Bérénice Wulbrecht, Payal Mitra, Enayat Rajabi, Ravi Bajracharya, Sixing Huang, Marco Monti, Deborah McGuinness, Richard Wallace</p>
-            <p>Moderator: Oshani Seneviratne</p>
-          </div>
-        </div>
-
-        <div class="row schedule-item">
-          <div class="col-md-2">
-            <time>4:30 PM</time>
-          </div>
-          <div class="col-md-10">
-            <h4>Exhibits<span></span></h4>
-          </div>
-        </div>
-
-
-        <div class="row schedule-item">
-          <div class="col-md-2">
-            <time>5:00 PM</time>
-          </div>
-          <div class="col-md-10">
-            <h4>Informal Networking<span></span></h4>
-            <p><b>Virtual Coordinators:</b> Marco Monti and Filip Pattyn</p>
-
-          </div>
-        </div>
-
-        <div class="row schedule-item">
-          <div class="col-md-2">
-            <time>6:00 PM</time>
-          </div>
-          <div class="col-md-10">
-            <h4>End<span></span></h4>
-          </div>
-        </div>
-
-
       </div>
-    </section>-->
+    </section>
     <!-- End Schedule Section -->
 
     <!-- ======= organizers Section ======= -->
@@ -459,93 +216,12 @@
 
         <div class="row no-gutters supporters-wrap clearfix" data-aos="zoom-in" data-aos-delay="100">
         <div class="row">
-          <!--<div class="col-lg-3 col-md-6">
+          <div v-for="o in organizers" class="col-lg-3 col-md-6">
             <div class="speaker" data-aos="fade-up" data-aos-delay="100">
-              <img src="assets/img/organizers/ching-hua.jpg" alt="Ching-Hua Chen" class="img-fluid">
+              <img v-bind:src="people[o].image" v-bind:alt="people[o].name" class="img-fluid rounded mx-auto d-block">
               <div class="details">
-                <h3><a href="https://researcher.watson.ibm.com/researcher/view.php?person=us-chinghua">Ching-Hua Chen</a></h3>
-                <p>IBM</p>
-              </div>
-            </div>
-          </div>-->
-          <!--<div class="col-lg-3 col-md-6">
-            <div class="speaker" data-aos="fade-up" data-aos-delay="300">
-              <img src="assets/img/organizers/ying.jpg" alt="Ying Ding" class="img-fluid">
-              <div class="details">
-                <h3><a href="https://www.ischool.utexas.edu/tags/ying-ding">Ying Ding</a></h3>
-                <p>University of Texas Austin</p>
-              </div>
-            </div>
-          </div>-->
-          <div class="col-lg-3 col-md-6">
-            <div class="speaker" data-aos="fade-up" data-aos-delay="100">
-              <img src="https://tw.rpi.edu/sites/default/files/2021-10/Jamie-McCusker.png" alt="Jamie Patricia McCusker" class="img-fluid rounded mx-auto d-block">
-              <div class="details">
-                <h3><a href="https://tw.rpi.edu/person/JamieMcCusker">Jamie McCusker</a></h3>
-                <p>Rensselaer Polytechnic Institute</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="speaker" data-aos="fade-up" data-aos-delay="100">
-              <img src="assets/img/organizers/deborah.jpg" alt="Deborah McGuinness" class="img-fluid rounded mx-auto d-block">
-              <div class="details">
-                <h3><a href="https://tw.rpi.edu/web/person/Deborah_L_McGuinness">Deborah McGuinness</a></h3>
-                <p>Rensselaer Polytechnic Institute</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="speaker" data-aos="fade-up" data-aos-delay="300">
-              <img src="assets/img/organizers/chip.jpg" alt="James Masters" class="img-fluid rounded mx-auto d-block">
-              <div class="details">
-                <h3><a href="#">James "Chip" Masters</a></h3>
-                <p>Icahn School of Medicine at Mount Sinai</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="speaker" data-aos="fade-up" data-aos-delay="300">
-              <img src="assets/img/organizers/lena.jpg" alt="James Masters" class="rounded mx-auto d-block img-fluid">
-              <div class="details">
-                <h3><a href="#">Helena Deus</a></h3>
-                <p>ZS</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="speaker" data-aos="fade-up" data-aos-delay="200">
-              <img src="assets/img/organizers/marco.jpeg" alt="Marco Monti" class="rounded mx-auto d-block img-fluid">
-              <div class="details">
-                <h3><a href="https://www.linkedin.com/in/marcomonti72">Marco Monti</a></h3>
-                <p>IBM</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="speaker" data-aos="fade-up" data-aos-delay="200">
-              <img src="https://www.knowledgegraph.tech/wp-content/uploads/2022/01/Filip-Pattyn.png" alt="Filip Pattyn " class="rounded mx-auto d-block img-fluid">
-              <div class="details">
-                <h3><a href="https://www.linkedin.com/in/filippattyn/">Filip Pattyn</a></h3>
-                <p>Ontoforce</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="speaker" data-aos="fade-up" data-aos-delay="200">
-              <img src="assets/img/organizers/tom.jpg" alt="Tom Plasterer" class="rounded mx-auto d-block img-fluid">
-              <div class="details">
-                <h3><a href="https://www.linkedin.com/in/tplasterer">Tom Plasterer</a></h3>
-                <p>AstraZeneca</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="speaker" data-aos="fade-up" data-aos-delay="300">
-              <img src="assets/img/organizers/oshani.jpg" alt="Oshani Seneviratne" class="img-fluid rounded mx-auto d-block">
-              <div class="details">
-                <h3><a href="https://idea.rpi.edu/people/staff/oshani-seneviratne">Oshani Seneviratne</a></h3>
-                <p>Rensselaer Polytechnic Institute</p>
+                <h3><a v-bind:href="people[o].page">{{people[o].name}}</a></h3>
+                <p>{{people[o].affiliation}}</p>
               </div>
             </div>
           </div>
@@ -555,7 +231,7 @@
 
     </section><!-- End organizers Section -->
     <!-- ======= Speakers Section ======= --> -->
-    <!--
+
     <section id="speakers">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
@@ -566,21 +242,11 @@
 
         <div class="row">
 
-          <div class="card" style="width: 18rem;">
-            <img src="assets/img/speakers/michel.jpg" class="card-img-top" alt="...">
+          <div v-for="person in keynotes" class="card" style="width: 24rem;">
+            <img v-bind:src="people[person].image"  style="height:23rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
             <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Michel Dumontier</h5>
-              <p class="card-text">Data-Driven Discovery Science with FAIR Knowledge Graphs</p>
-              <a href="michel.html" class="btn btn-primary mt-auto">Talk Abstract</a>
-            </div>
-          </div>
-
-          <div class="card" style="width: 18rem;">
-            <img src="assets/img/speakers/berenice.jpeg" class="card-img-top" alt="...">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Bérénice Wulbrecht</h5>
-              <p class="card-text">Data Driven Decisions in Life Sciences powered by Knowledge Graphs. Example on Clinical Trials information</p>
-              <a href="berenice.html" class="btn btn-primary mt-auto">Talk Abstract</a>
+              <h5 class="card-title">{{people[person].name}}</h5>
+              <p class="card-text">{{people[person].affiliation}}</p>
             </div>
           </div>
       </div>
@@ -592,80 +258,13 @@
     <h3>Session Speakers</h3>
 
     <div class="row">
-
-      <div class="card" style="width: 18rem;">
-        <img src="assets/img/speakers/Matthias.png" class="card-img-top" alt="...">
+      <div v-for="person in presenters" class="card" style="width: 18rem;">
+        <img v-bind:src="people[person].image" style="height:17rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Matthias Nolte</h5>
-          <p class="card-text">Semantic Chemical Data Management – From FAIR to IDMP Compliance</p>
-          <a href="matthias.html" class="btn btn-primary mt-auto">Talk Abstract</a>
+          <h5 class="card-title">{{people[person].name}}</h5>
+          <p class="card-text">{{people[person].affiliation}}</p>
         </div>
       </div>
-
-      <div class="card" style="width: 18rem;">
-        <img src="assets/img/speakers/Benjamin.png" class="card-img-top" alt="...">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Benjamin Gyori</h5>
-          <p class="card-text">An automatically assembled knowledge graph from literature-extracted molecular biology knowledge with human-machine dialogue to support biomedical discovery</p>
-          <a href="benjamin.html" class="btn btn-primary mt-auto">Talk Abstract</a>
-        </div>
-      </div>
-
-      <div class="card" style="width: 18rem;">
-        <img src="assets/img/speakers/Shashank.png" class="card-img-top" alt="...">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Shashank Jatav</h5>
-          <p class="card-text">Building a knowledge graph of biomedical entities (genes, diseases, proteins, pathways) using a gene signature representing a particular disease condition or perturbation using half a million FAIR datasets</p>
-          <a href="shashank.html" class="btn btn-primary mt-auto">Talk Abstract</a>
-        </div>
-      </div>
-
-      <div class="card" style="width: 18rem;">
-        <img src="assets/img/speakers/Tiffany.png" class="card-img-top" alt="...">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Tiffany Callahan</h5>
-          <p class="card-text">An Open-Source Knowledge Graph Ecosystem for the Life Sciences</p>
-          <a href="tiffany.html" class="btn btn-primary mt-auto">Talk Abstract</a>
-        </div>
-      </div>
-
-      <div class="card" style="width: 18rem;">
-        <img src="assets/img/speakers/Payal.png" class="card-img-top" alt="...">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Payal Mitra</h5>
-          <p class="card-text">EpiMap: Predicting Epigenetic Targets with Triage Queries and KG Embedding Models</p>
-          <a href="payal.html" class="btn btn-primary mt-auto">Talk Abstract</a>
-        </div>
-      </div>
-
-      <div class="card" style="width: 18rem;">
-        <img src="assets/img/speakers/Enayat.png" class="card-img-top" alt="...">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Enayat Rajabi</h5>
-          <p class="card-text">Creating a Healthcare Knowledge Graph from Statistical Open Data</p>
-          <a href="enayat.html" class="btn btn-primary mt-auto">Talk Abstract</a>
-        </div>
-      </div>
-
-      <div class="card" style="width: 18rem;">
-        <img src="assets/img/speakers/Ravi.png" class="card-img-top" alt="...">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Ravi Bajracharya</h5>
-          <p class="card-text">Biomedical Knowledge Graph: Build and Usage</p>
-          <a href="ravi.html" class="btn btn-primary mt-auto">Talk Abstract</a>
-        </div>
-      </div>
-
-      <div class="card" style="width: 18rem;">
-        <img src="assets/img/speakers/Sixing.png" class="card-img-top" alt="...">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Sixing Huang</h5>
-          <p class="card-text">Doctor.ai: Navigate a Medical Knowledge Graph using English</p>
-          <a href="sixing.html" class="btn btn-primary mt-auto">Talk Abstract</a>
-        </div>
-      </div>
-
-
   </div>
 
   <br>
@@ -675,23 +274,21 @@
 <h3>Sponsor Speaker</h3>
 
 <div class="row">
-  <div class="card" style="width: 18rem;">
-    <img src="assets/img/speakers/Richard.png" class="card-img-top" alt="...">
+  <div v-for="person in sponsor_speakers" class="card" style="width: 18rem;">
+    <img v-bind:src="people[person].image" style="height:17rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
     <div class="card-body d-flex flex-column">
-      <h5 class="card-title">Richard Wallace (Sponsor)</h5>
-      <p class="card-text">Why You Will Build an Entity-Event Knowledge Graph, perspectives from the field?</p>
-      <a href="richard.html" class="btn btn-primary mt-auto">Talk Abstract</a>
+      <h5 class="card-title">{{people[person].name}}</h5>
+      <p class="card-text">{{people[person].affiliation}}</p>
     </div>
   </div>
 
-
 </div>
 
-</section>-->
+</section>
     <!-- End Speakers Section -->
 
     <!-- ======= Sponsors Section ======= -->
-<!--    <section id="sponsors">
+    <section id="sponsors">
       <div class="container" data-aos="fade-up">
         <div class="section-header">
           <h2>Sponsors</h2>
@@ -700,10 +297,10 @@
         <div class="row">
           <div class="col-lg-3 col-md-6">
             <div class="speaker" data-aos="fade-up" data-aos-delay="100">
-              <img src="assets/img/sponsors/4_Bronze_Franz.png" alt="Franz Inc." class="img-fluid"></a>
+              <img src="assets/img/sponsors/AstraZeneca.jpg" alt="AstraZeneca" class="img-fluid"></a>
               <div class="details">
-                <h3>Franz Inc.</h3>
-                <p>KGC BRONZE SPONSOR, HCLS SPONSOR</p>
+                <h3>AstraZeneca</h3>
+                <p>HCLS SPONSOR</p>
               </div>
             </div>
           </div>
@@ -713,14 +310,14 @@
               <img src="assets/img/sponsors/5_Virtual_Ontoforce.png" alt="Ontoforce" class="img-fluid"></a>
               <div class="details">
                 <h3>Ontoforce</h3>
-                <p>KGC VIRTUAL SPONSOR, HCLS BOOSTER</p>
+                <p>KGC PARTNER SPONSOR, HCLS SPONSOR</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-    </section>-->
+    </section>
     <!-- End Sponsors Section -->
 
     <!-- ======= Subscribe Section ======= -->
@@ -783,8 +380,242 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+<script type="module">
+import { createApp } from 'vue'
+
+var data = {
+  schedule: [
+    {
+      label: "Keynote 1",
+      chair: "Jamie McCusker",
+      presentations: [
+        {
+          time: '09:00 AM',
+          presenter: 'john_apathy',
+          status: "In Person"
+        }
+      ]
+    },
+    {
+      label: "Session 1: HCLS Platforms",
+      chair: "Helena Deus",
+      presentations: [
+        {
+          time: '10:00 AM',
+          presenter: 'sharat_israni',
+          status: ""
+        },
+        {
+          time: '10:30 AM',
+          label: "Break & Exhibitors"
+        },
+        {
+          time: '11:00 AM',
+          presenter: 'jamie_mccusker',
+          status: "In Person"
+        },
+        {
+          time: '11:30 AM',
+          presenter: 'ashley_poort',
+          status: "In Person"
+        },
+        {
+          time: '12:00 PM',
+          presenter: 'eric_neumann',
+          status: "In Person"
+        },
+        {
+          time: '12:30-1:30 PM',
+          label: "Lunch Break"
+        },
+      ]
+    },
+    {
+      label: "Sponsor Talk",
+      presentations: [
+        {
+          time: '1:30 PM',
+          presenter: 'carl_latham',
+          status: "In Person"
+        },
+      ]
+    },
+    {
+      label: "Keynote 2",
+      chair: "Jamie McCusker",
+      presentations: [
+        {
+          time: '2:00 PM',
+          presenter: 'maulik_kamdar',
+          status: "In Person"
+        },
+        {
+          time: '3:00-3:30 PM',
+          label: "Break and Exhibitors"
+        }
+      ]
+    },
+    {
+      label: "Session 2: HCLS Applications",
+      chair: "Tom Plasterer",
+      presentations: [
+        {
+          time: '03:30 PM',
+          presenter: 'deborah_mcguinness',
+          status: "In Person"
+        },
+        {
+          time: '04:00 PM',
+          presenter: 'steve_hamby',
+          status: "Remote"
+        },
+        {
+          time: '04:30 PM',
+          presenter: 'jans_aasman',
+          status: "In Person"
+        }
+      ]
+    },
+    {
+      label: "Panel Discussion: HCLS KGs and Large Language Models",
+      chair: "Deborah McGuinness",
+      presentations: [
+        {
+          time: "05:00 PM",
+          label: "Jans Aasman, ..., Jamie McCusker, Helena Deus",
+
+        },
+        {
+          label: "End",
+          time: "6:00 PM",
+        },
+      ]
+    },
+  ],
+  people: {
+    "john_apathy" : {
+      name: "John Apathy",
+      image: "assets/img/speakers/john_apathy.jpeg",
+      affiliation: "",//"Bristol-Meyers Squibb"
+      title: "TBA"
+    },
+    'sharat_israni': {
+      name: "Sharat Israni",
+      image: "assets/img/speakers/Sharat.jpeg",
+      affiliation: "UCSF",
+      title: "Ordering “Big Results” from a Federation of Biomedical Knowledge Graphs",
+    },
+    'jamie_mccusker': {
+      name: "Jamie McCusker",
+      page: "https://tw.rpi.edu/person/JamieMcCusker",
+      image: "assets/img/organizers/jamie.jpeg",
+      affiliation: "Rensselaer Polytechnic Institute",
+      title: "Enabling Rapid Application and Management of Knowledge in Learning Health Systems: The Computable Biomedical Knowledge Metadata Model (CBK-MM) Project"
+    },
+    'ashley_poort': {
+      name: "Ashley Poort",
+      image: "assets/img/speakers/Ashley.jpeg",
+      affiliation: "ZS",
+      title: "ZS Knowledge Engineering Platform"
+    },
+    'eric_neumann': {
+      name: "Eric Neumann",
+      image: "assets/img/speakers/Eric.jpeg",
+      affiliation: "AIDAKA LLC",
+      title: "Knowledge Graphs, Property Graphs and HyperGraphs: Equivalences and Differences"
+    },
+    'carl_latham': {
+      name: "Carl Latham",
+      image: "assets/img/speakers/Carl.png",
+      affiliation: "Ontoforce (Sponsor Talk)",
+      title: "TBA"
+    },
+    'maulik_kamdar': {
+      name: "Maulik R Kamdar",
+      image: "assets/img/speakers/Maulik.jpeg",
+      affiliation: "Optum Health",
+      title: "Web-Scale Data Integration in Life Sciences and Healthcare through Knowledge Graphs"
+    },
+    'deborah_mcguinness': {
+      name: "Deborah McGuinness",
+      page: "https://tw.rpi.edu/web/person/Deborah_L_McGuinness",
+      image: "assets/img/organizers/deborah.jpg",
+      affiliation: "Rensselaer Polytechnic Institute",
+      title: "Web-Scale Data Integration in Life Sciences and Healthcare through Knowledge Graphs"
+    },
+    'steve_hamby': {
+      name: "Steve Hamby",
+      image: "assets/img/speakers/Steve_Hamby.jpeg",
+      affiliation: "Vitality TechNet",
+      title: "Semantically Enabling Career Transitions in the Life Sciences and Healthcare Sector"
+    },
+    'jans_aasman': {
+      name: "Jans Aasman",
+      image: "assets/img/speakers/Jans.jpeg",
+      affiliation: "Franz, Inc",
+      title: "Building a Healthcare and Life Sciences Knowledge Graph with Synthea and ChatGPT"
+    },
+    'helena_deus': {
+      name: "Helena Deus",
+      image: "assets/img/organizers/lena.jpg",
+      page: "https://www.linkedin.com/in/helenadeus/",
+      affiliation: "ZS",
+    },
+    'tom_plasterer': {
+      name: "Tom Plasterer",
+      page: "https://www.linkedin.com/in/tplasterer",
+      image: "assets/img/organizers/tom.jpg",
+      affiliation: "AstraZeneca"
+    },
+    'marco_monti': {
+      name: "Marco Monti",
+      image: "assets/img/organizers/marco.jpeg",
+      page: "https://www.linkedin.com/in/marcomonti72",
+      affiliation: "IBM"
+    },
+    'oshani_seneviratne': {
+      name: "Oshani Seneviratne",
+      page: "https://idea.rpi.edu/people/staff/oshani-seneviratne",
+      image: "assets/img/organizers/oshani.jpg",
+      affiliation: "Rensselaer Polytechnic Institute"
+    },
+  },
+  keynotes: [
+    'john_apathy',
+    'maulik_kamdar'
+  ],
+  presenters: [
+    'sharat_israni',
+    'jamie_mccusker',
+    'ashley_poort',
+    'eric_neumann',
+    'deborah_mcguinness',
+    'steve_hamby',
+    'jans_aasman'
+  ],
+  organizers: [
+    'jamie_mccusker',
+    'helena_deus',
+    'tom_plasterer',
+    'deborah_mcguinness',
+    'marco_monti',
+    'oshani_seneviratne'
+  ],
+  sponsor_speakers: [
+    'carl_latham'
+  ]
+}
+
+createApp({
+  data() {
+    return data
+  }
+}).mount('#main')
+</script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
 
 </body>
 
