@@ -248,6 +248,8 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{people[person].name}}</h5>
                 <p class="card-text">{{people[person].affiliation}}</p>
+                <br/>
+                <a v-bind:href="people[person].more" class="btn btn-primary mt-auto">Speaker Bio & Talk Abstract</a>
               </div>
             </a>
           </div>
@@ -444,11 +446,11 @@ var data = {
     },
     {
       label: "Keynote 2",
-      chair: "Deborah McGuinness",
+      chair: "TBD",
       presentations: [
         {
           time: '2:00 PM',
-          presenter: 'jamie_mccusker',
+          presenter: 'Subha_Madhavan',
           status: "In Person"
         },
         {
@@ -495,7 +497,6 @@ var data = {
     },
   ],
   people: {
-    
     'Hans_Constandt': {
       name: "Hans Constandt",
       page: "https://www.linkedin.com/in/hansconstandt",
@@ -503,6 +504,14 @@ var data = {
       affiliation: "FAQIR",
       title: "Revolutionizing Healthcare in Europe: Unleashing the Power of Knowledge Graphs for Personal Health Data Vaults",
       more: "hans.html"
+    },
+    'Subha_Madhavan': {
+      name: "Subha Madhavan",
+      page: "https://www.linkedin.com/in/subhamadhavan",
+      image: "assets/img/speakers/Subha_Madhavan.jpg",
+      affiliation: "Pfizer",
+      title: "TBD",
+      more: "subha.html"
     },
     'jamie_mccusker': {
       name: "Jamie McCusker",
@@ -586,7 +595,7 @@ var data = {
   },
   keynotes: [
     'Hans_Constandt',
-    'jamie_mccusker',
+    'Subha_Madhavan',
   ],
   presenters: [
     'sharat_israni',
