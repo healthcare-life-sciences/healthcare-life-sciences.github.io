@@ -38,7 +38,8 @@
       "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
     }
   }
-</script>  <!-- ======= Header ======= -->
+</script>  
+<!-- ======= Header ======= -->
   <header id="header" class="d-flex align-items-center ">
     <div class="container-fluid container-xxl d-flex align-items-center">
 
@@ -242,11 +243,13 @@
         <div class="row">
 
           <div v-for="person in keynotes" class="card" style="width: 24rem;">
-            <img v-bind:src="people[person].image"  style="height:23rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">{{people[person].name}}</h5>
-              <p class="card-text">{{people[person].affiliation}}</p>
-            </div>
+            <a v-bind:href="people[person].more">
+              <img v-bind:src="people[person].image"  style="height:23rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{people[person].name}}</h5>
+                <p class="card-text">{{people[person].affiliation}}</p>
+              </div>
+            </a>
           </div>
       </div>
 
@@ -390,7 +393,7 @@ var data = {
       presentations: [
         {
           time: '09:00 AM',
-          presenter: '',
+          presenter: 'Hans_Constandt',
           status: "In Person"
         }
       ]
@@ -492,24 +495,20 @@ var data = {
     },
   ],
   people: {
-    "john_apathy" : {
-      name: "John Apathy",
-      image: "assets/img/speakers/john_apathy.jpeg",
-      affiliation: "",//"Bristol-Meyers Squibb"
-      title: "Building FAIR solutions and knowledge graphs for research in a large pharmaceutical organization"
-    },
-    'sharat_israni': {
-      name: "Sharat Israni",
-      image: "assets/img/speakers/Sharat.jpeg",
-      affiliation: "UCSF",
-      title: "Ordering “Big Results” from a Federation of Biomedical Knowledge Graphs",
+    
+    'Hans_Constandt': {
+      name: "Hans Constandt",
+      page: "https://www.linkedin.com/in/hansconstandt",
+      image: "assets/img/speakers/Hans_Constandt.jpeg",
+      affiliation: "FAQIR",
+      title: "Revolutionizing Healthcare in Europe: Unleashing the Power of Knowledge Graphs for Personal Health Data Vaults",
+      more: "hans.html"
     },
     'jamie_mccusker': {
       name: "Jamie McCusker",
       page: "https://tw.rpi.edu/person/JamieMcCusker",
       image: "assets/img/organizers/jamie.jpeg",
       affiliation: "Rensselaer Polytechnic Institute",
-      title: "Enabling Rapid Application and Management of Knowledge in Learning Health Systems: The Computable Biomedical Knowledge Metadata Model (CBK-MM) Project"
     },
     'ashley_poort': {
       name: "Jaipal Dhupar and Ashley Poort",
@@ -586,7 +585,7 @@ var data = {
     },
   },
   keynotes: [
-    'john_apathy',
+    'Hans_Constandt',
     'jamie_mccusker',
   ],
   presenters: [
