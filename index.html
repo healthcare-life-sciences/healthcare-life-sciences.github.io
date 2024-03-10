@@ -54,7 +54,16 @@
       </div>  
       <script>
         $(function(){
-          $("#navbar-placeholder").load("navbar.html");
+          $("#navbar-placeholder").load("navbar.html", function() {
+            // Initialize the scroll functionality here
+            // For example, if you are using Bootstrap's scrollspy or a custom function, initialize it here.
+            // If you are using a function from `assets/js/main.js`, call that function here.
+            
+            // Example: Assuming `initScroll` is a function in `assets/js/main.js` that sets up the scrolling
+            if (typeof initScroll === "function") { 
+              initScroll();
+            }
+          });
         });
         </script>
 
@@ -192,7 +201,7 @@
                     <img v-bind:src="people[p.presenter].image" v-bind:alt="people[p.presenter].name">
                   </div>
                   <h4><span>{{people[p.presenter].name}} - {{people[p.presenter].affiliation}}</span></h4>
-                  <p>{{people[p.presenter].title}} | [{{p.status}}] </p>
+                  <p>{{people[p.presenter].title}} [{{p.status}}] </p>
                 </div>
                 <div class="col-md-10" v-if="!p.presenter">
                   <h4>
@@ -391,32 +400,31 @@ var data = {
   schedule: [
     {
       label: "Keynote 1",
-      chair: "TBD",
+      chair: "Tom Plasterer",
       presentations: [
         {
           time: '09:00 AM',
           presenter: 'Hans_Constandt',
-          status: "In Person"
+          status: "45 mins + 15 mins Q&A"
         }
       ]
     },
     {
-      label: "Panel Discussion: Future of Personalized Health with Knowledge Graphs",
+      label: "Panel Discussion #1",
       chair: "Deborah McGuinness",
       presentations: [
         {
           time: "10:00 AM",
-          label: "Hans Constandt, Jans Aasman, Others TBD",
-
-        },      
+          presenter: 'panel1',
+          status: "30 mins"},      
       ]
     },
     {
-      label: "Break & Exhibitors",
+    label: "Break & Exhibitors",
       presentations: [
         {
           time: '10:30 AM',
-          label: ""
+          label: "Coffee Break"
         },
         
       ]
@@ -427,38 +435,34 @@ var data = {
         {
           time: '11:00 AM',
           presenter: 'AstraZeneca',
-          status: "In Person"
+          status: "30 mins"
         },
       ]
     },
     {
-      label: "Paper Session 1:",
-      chair: "Oshani Seneviratne",
+      label: "Paper Session 1 (3 regular talks):",
+      chair: "TBD",
       presentations: [
         {
           time: '11:30 AM',
           presenter: 'maulik_kamdar',
-          status: "In Person"
+          status: "15 mins + 5 mins Q&A"
         },
         {
-          time: '11:45 AM',
-          presenter: '',
-          status: "In Person"
+          time: '11:50 AM',
+          presenter: 'Adrianna_Janik',
+          status: "15 mins + 5 mins Q&A"
         },
         {
-          time: '12:00 PM',
+          time: '12:10 PM',
           presenter: '',
-          status: "In Person"
+          status: "15 mins + 5 mins Q&A"
         },
         {
-          time: '12:15 PM',
-          presenter: '',
-          status: "In Person"
+          time: '12:30',
+          label: "Lunch Break (60 mins)",
         },
       ]
-    },
-    {
-      label: "Lunch Break (12:30-1:30 PM)",
     },
     {
       label: "Keynote 2",
@@ -468,51 +472,91 @@ var data = {
           time: '1:30 PM',
           presenter: 'Subha_Madhavan',
           status: "In Person"
-        },
-     ]
+        }
+      ]
     },
     {
-      label: "Panel Discussion: Generating and Querying Graphs with LLM",
+      label: "Paper Session 2 (5 short talks):",
       chair: "TBD",
       presentations: [
         {
-          time: "04:30 PM",
-          label: "Subha Madhavan, Berenice Wulbrecht, Others TBD",
-
+          time: '2:30 PM',
+          presenter: 'sujit_pal',
+          status: "5 mins"
         },
         {
-          time: '3:00-3:30 PM',
-          label: "Break and Exhibitors"
+          time: '2:35 PM',
+          presenter: 'Henrique_Santos',
+          status: "5 mins"
+        },
+        {
+          time: '2:40 PM',
+          presenter: 'deborah_mcguinness_short_talk',
+          status: "5 mins"
+        },
+        {
+          time: '2:45 PM',
+          presenter: '',
+          status: "5 mins"
+        },
+        {
+          time: '2:50 PM',
+          presenter: '',
+          status: "5 mins"
+        },
+        // {
+        //   time: '2:55 PM',
+        //   presenter: 'session2q&a',
+        //   status: "5 mins"
+        // },
+      ]
+    },
+    {
+    label: "Break & Exhibitors",
+      presentations: [
+        {
+          time: '3:00 PM',
+          label: "Ontofoce Roundtable"
+        },
+        
+      ]
+    },
+    {
+      label: "Paper Session 3 (2 regular talks):",
+      chair: "TBD",
+      presentations: [
+        {
+          time: '3:30 PM',
+          presenter: 'brian_martin',
+          status: "15 mins + 5 mins Q&A"
+        },
+        {
+          time: '3:50 PM',
+          presenter: 'elisa_kendall',
+          status: "15 mins + 5 mins Q&A"
+        },
+      ]
+    },
+    {
+      label: "Panel Discussion #2",
+      chair: "TBD",
+      presentations: [
+        {
+          time: "04:10 PM",
+          presenter: 'panel2',
+          status: "40 mins"},      
+      ]
+    },
+    {
+      label: "Closing Remarks",
+      presentations: [
+        {
+          time: '4:50 PM',
+          label: "Symposium Closing and Happy Hour Announcement"
         }
       ]
     },
 
-    {
-      label: "Paper Session 2:",
-      chair: "TBD",
-      presentations: [
-        {
-          time: '03:30 PM',
-          presenter: '',
-          status: "Remote"
-        },
-        {
-          time: '03:45 PM',
-          presenter: '',
-          status: "Remote"
-        },
-        {
-          time: '04:00 PM',
-          presenter: '',
-          status: "In Person"
-        },
-        {
-          label: "End",
-          time: "05:00 PM",
-        },
-
-      ]
-    },
   ],
   people: {
     'Hans_Constandt': {
@@ -542,7 +586,6 @@ var data = {
       page: "https://tw.rpi.edu/web/person/Deborah_L_McGuinness",
       image: "assets/img/organizers/deborah.jpg",
       affiliation: "Rensselaer Polytechnic Institute",
-      title: "Facilitating Reuse of Mental Health Questionnaires via Knowledge Graphs"
     },
     'helena_deus': {
       name: "Helena Deus",
@@ -571,10 +614,77 @@ var data = {
     'maulik_kamdar': {
       name: "Maulik R Kamdar",
       page: "https://maulik-kamdar.com",
-      image: "2023/assets/img/speakers/Maulik.jpeg",
+      image: "assets/img/speakers/Maulik.jpeg",
       affiliation: "Optum Health",
       title: "Knowledge Engineering in Clinical Decision Support: When a Graph Representational Model is not Enough",
-    }
+    },
+    'Adrianna_Janik': {
+      name: "Adrianna Janik",
+      page: "https://adrijanik.github.io",
+      image: "assets/img/speakers/Adrianna.jpeg",
+      affiliation: "Accenture Labs ",
+      title: "Recurrence Prediction in Early-Stage Lung Cancer Patients Utilising Knowledge Graph Embedding Models on Patient Data Enriched with Medical Background Knowledge",
+    },
+    'brian_martin': {
+      name: "Brian Martin",
+      page: "https://www.linkedin.com/in/brianm1028",
+      image: "assets/img/speakers/Brian.jpeg",
+      affiliation: "Abbvie",
+      title: "Graphs for Good - Hypotheses Generation for Rare Disease Treatment",
+    },
+    'elisa_kendall': {
+      name: "Elisa Kendall",
+      page: "https://www.linkedin.com/in/elisakendall",
+      image: "assets/img/speakers/Elisa.jpeg",
+      affiliation: "Thematix Partner LLC and EDM Council",
+      title: "The Identification of Medicinal Products Ontology (IDMP-O) – Current Status and Next Steps Beyond 1.0",
+    },
+    'panel1': {
+      name: "Hans Constandt, Jans Aasman, Others TBD",
+      title: "Future of Personalized Health with Knowledge Graphs",
+      affiliation: "FAQIR, Franz Inc, ...",
+      title: "Future of Personalized Health with Knowledge Graphs"
+    },
+    'panel2': {
+      name: "Subha Madhavan, Berenice Wulbrecht, Others TBD",
+      title: "Generating and Querying Graphs with LLM",
+      affiliation: "Pfizer, Ontoforce, ...",
+    },
+    'AstraZeneca': {
+      name: "Speaker TBD",
+      page: "",
+      // image: "",
+      affiliation: "AstraZeneca",
+      title: "TBD",
+    },
+    'session1q&a': {
+      title: "Session 1 Short Paper Q&A",
+    },
+    'session2q&a': {
+      title: "Session 2 Q&A",
+    },
+    'sujit_pal': {
+      name: "Sujit Pal",
+      page: "https://www.linkedin.com/in/sujitpal/",
+      image: "assets/img/speakers/Sujit.jpeg",
+      affiliation: "Elsevier Labs",
+      title: "A Scalable and Robust Named Entity Recognition and Linking System for a Clinical Healthcare Knowledge Graph",
+    },
+    'Henrique_Santos': {
+      name: "Henrique Santos",
+      page: "https://tw.rpi.edu/person/HenriqueSantos",
+      image: "assets/img/speakers/Henrique.jpeg",
+      affiliation: "Rensselaer Polytechnic Institute",
+      title: "Psychometric Assessment Issues and Potential Opportunities",
+    },
+    'deborah_mcguinness_short_talk': {
+      name: "Deborah McGuinness",
+      page: "https://tw.rpi.edu/web/person/Deborah_L_McGuinness",
+      image: "assets/img/organizers/deborah.jpg",
+      affiliation: "Rensselaer Polytechnic Institute",
+      title: "Towards an Ontology of Psychometric Measures"
+    },
+
   },
   keynotes: [
     'Hans_Constandt',
@@ -582,6 +692,7 @@ var data = {
   ],
   presenters: [
     'maulik_kamdar',
+    'Adrianna_Janik',
   ],
   organizers: [
     'helena_deus',
@@ -595,11 +706,17 @@ var data = {
   ]
 }
 
+
 createApp({
   data() {
-    return data
+    return data;
+  },
+  methods: {
+    getPersonDetails(personKey) {
+      return this.people[personKey];
+    }
   }
-}).mount('#main')
+}).mount('#main');
 </script>
 
 <!-- Template Main JS File -->
