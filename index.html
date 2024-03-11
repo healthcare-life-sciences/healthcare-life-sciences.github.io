@@ -474,14 +474,25 @@ import { createApp } from 'vue'
 
 var data = {
   schedule: [
+  {
+      label: "Symposium Opening ",
+      presentations: [
+        {
+          time: '9:00 AM',
+          label: "Welcome and Opening Remarks",
+          status: "5 mins"
+        }
+      ]
+    },
     {
       label: "Keynote 1",
       chair: "Tom Plasterer",
       presentations: [
+        
         {
-          time: '09:00 AM',
+          time: '09:05 AM',
           presenter: 'Hans_Constandt',
-          status: "45 mins + 15 mins Q&A"
+          status: "45 mins + 10 mins Q&A"
         }
       ]
     },
@@ -620,15 +631,26 @@ var data = {
         {
           time: "04:10 PM",
           presenter: 'panel2',
-          status: "40 mins"},      
+          status: "40 mins"
+        },      
       ]
     },
     {
-      label: "Closing Remarks",
+      label: "Closing Session",
       presentations: [
         {
           time: '4:50 PM',
-          label: "Symposium Closing and HCLS Reception Announcement"
+          label: "Closing Remarks and HCLS Reception Announcement [10 mins]",
+          // status: "10 mins"
+        },
+        {
+          time: '5:00 PM',
+          label: "Poster Session [30 mins]",
+          // status: "30 mins"
+        },
+        {
+          time: '5:30 PM',
+          label: "Symposium Closing",
         }
       ]
     },
@@ -737,7 +759,7 @@ var data = {
     'AstraZeneca': {
       name: "Speaker TBD",
       page: "",
-      // image: "",
+      image: "assets/img/sponsors/AstraZeneca.png",
       affiliation: "AstraZeneca",
       title: "TBD",
     },
