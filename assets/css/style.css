@@ -1640,3 +1640,17 @@ h1, h2, h3, h4, h5, h6 {
   text-align: justify;
   text-justify: inter-word;
 }
+
+  .sponsor {
+  /* Set a fixed height for the logo containers */
+  height: 100px; /* Adjust this value as needed */
+  display: flex;
+  justify-content: center; /* Center logo horizontally */
+  align-items: center; /* Center logo vertically */
+  overflow: hidden; /* Hide parts of the logo that exceed the container */
+}
+
+.sponsor img {
+  max-height: 100%; /* Ensure logo fits within the container height */
+  width: auto; /* Keep logo aspect ratio */
+}
