@@ -342,21 +342,24 @@
   <br>
   <hr>
 
-<!-- 
+
 <h3>Sponsor Speaker</h3>
 
-<div class="row">
-  <div v-for="person in sponsor_speakers" class="card" style="width: 18rem;">
-    <img v-bind:src="people[person].image" style="height:17rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
-    <div class="card-body d-flex flex-column">
-      <h5 class="card-title">{{people[person].name}}</h5>
-      <p class="card-text">{{people[person].affiliation}}</p>
+  <div class="row">
+            
+    <div v-for="person in sponsor_speakers" class="card col-lg-4 col-md-4">
+      <a v-bind:href="people[person].more">
+        <img v-bind:src="people[person].image"  style="height:23rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{people[person].name}}</h5>
+          <p class="card-text">{{people[person].affiliation}}</p>
+          <br/>
+          <a v-bind:href="people[person].more" class="btn btn-primary mt-auto">Speaker Bio & Talk Abstract</a>
+        </div>
+      </a>
     </div>
   </div>
-
-</div> -->
-
-</section>
+  </section>
     <!-- End Speakers Section -->
 
     <!-- ======= Sponsors Section ======= -->
@@ -811,7 +814,8 @@ var data = {
       page: "",
       image: "assets/img/speakers/Krishna.jpeg",
       affiliation: "AstraZeneca",
-      title: "Title TBD",
+      title: "Knowledge Graphs for Precision Oncology",
+      more: "krishna.html"
     },
     'session1q&a': {
       title: "Session 1 Short Paper Q&A",
@@ -907,6 +911,7 @@ var data = {
     'ted_slater'
   ],
   sponsor_speakers: [
+    'AstraZeneca'
   ]
 }
 
