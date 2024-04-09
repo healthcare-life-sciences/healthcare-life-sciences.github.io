@@ -296,7 +296,23 @@
 
       <div class="row">
         
-        <div v-for="person in panelists" class="card col-lg-3 col-md-3">
+        <div v-for="person in panelists" class="card col-lg-2 col-md-2">
+          <a v-bind:href="people[person].more">
+            <img v-bind:src="people[person].image"  style="height:23rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{people[person].name}}</h5>
+              <p class="card-text">{{people[person].affiliation}}</p>
+              <br/>
+            </div>
+          </a>
+        </div>
+    </div>
+
+    <h3>Panel Moderators</h3>
+
+      <div class="row">
+        
+        <div v-for="person in panel_moderators" class="card col-lg-3 col-md-3">
           <a v-bind:href="people[person].more">
             <img v-bind:src="people[person].image"  style="height:23rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
             <div class="card-body d-flex flex-column">
@@ -347,7 +363,24 @@
 
   <div class="row">
             
-    <div v-for="person in sponsor_speakers" class="card col-lg-4 col-md-4">
+    <div v-for="person in sponsor_speakers" class="card col-lg-3 col-md-3">
+      <a v-bind:href="people[person].more">
+        <img v-bind:src="people[person].image"  style="height:23rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{people[person].name}}</h5>
+          <p class="card-text">{{people[person].affiliation}}</p>
+          <br/>
+          <a v-bind:href="people[person].more" class="btn btn-primary mt-auto">Speaker Bio & Talk Abstract</a>
+        </div>
+      </a>
+    </div>
+  </div>
+  
+  <h3>Roundtable Speakers</h3>
+
+  <div class="row">
+            
+    <div v-for="person in roundtable_speakers" class="card col-lg-3 col-md-3">
       <a v-bind:href="people[person].more">
         <img v-bind:src="people[person].image"  style="height:23rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
         <div class="card-body d-flex flex-column">
@@ -360,6 +393,7 @@
     </div>
   </div>
   </section>
+
     <!-- End Speakers Section -->
 
     <!-- ======= Sponsors Section ======= -->
@@ -568,7 +602,7 @@ var data = {
         },
         {
           time: '10:30 AM',
-          presenter: 'Ryan_Chandler,',
+          presenter: 'Ryan_Chandler',
           status: "30 mins"
         },
       ]
@@ -671,7 +705,7 @@ var data = {
         },
         {
           time: '3:00 PM',
-          presenter: 'Ryan_Chandler,',
+          presenter: 'Ryan_Chandler',
           status: "30 mins"
         },
       ]
@@ -913,7 +947,7 @@ var data = {
       affiliation: "President at TopQuadrant",
       title: "Challenges and Solutions in Implementing Semantics in R&D",
     },
-    'Ryan_Chandler,': {
+    'Ryan_Chandler': {
       name: "Ryan Chandler",
       page: "https://www.linkedin.com/in/ryanchandler13/",
       image: "assets/img/speakers/ryan.jpg",
@@ -927,14 +961,15 @@ var data = {
     'Subha_Madhavan',
   ],
   panelists: [
-    'deborah_mcguinness',
     'Hans_Constandt',
     'jans_aasman',
-    // '', TODO Add one more panelist
-    'oshani_seneviratne',
     'Subha_Madhavan',
     'Berenice_Wulbrecht',
     'brian_martin',
+  ],
+  panel_moderators: [
+    'deborah_mcguinness',
+    'oshani_seneviratne',
   ],
   presenters: [
     'maulik_kamdar',
@@ -959,8 +994,14 @@ var data = {
     'ted_slater'
   ],
   sponsor_speakers: [
-    'AstraZeneca'
+    'AstraZeneca',
+  ],
+  roundtable_speakers: [
+    'Kai_Preuss',
+    'Amar_Doshi',
+    'Ryan_Chandler',
   ]
+
 }
 
 
