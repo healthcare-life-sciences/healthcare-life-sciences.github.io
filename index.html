@@ -227,7 +227,7 @@
                     <img v-bind:src="people[p.presenter].image" v-bind:alt="people[p.presenter].name">
                   </div>
                   <h4><span>{{people[p.presenter].name}} - {{people[p.presenter].affiliation}}</span></h4>
-                  <p>{{people[p.presenter].title}} [{{p.status}}] </p>
+                  <p>{{people[p.presenter].title}} {{p.status}} </p>
                 </div>
                 <div class="col-md-10" v-if="!p.presenter">
                   <h4>
@@ -277,7 +277,7 @@
 
         <div class="row">
           
-          <div v-for="person in keynotes" class="card col-lg-4 col-md-4">
+          <div v-for="person in keynotes" class="card col-lg-2 col-md-2">
             <a v-bind:href="people[person].more">
               <img v-bind:src="people[person].image"  style="height:23rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
               <div class="card-body d-flex flex-column">
@@ -349,7 +349,7 @@
 
   <div class="row">
             
-    <div v-for="person in sponsor_speakers" class="card col-lg-3 col-md-3">
+    <div v-for="person in sponsor_speakers" class="card col-lg-2 col-md-2">
       <a v-bind:href="people[person].more">
         <img v-bind:src="people[person].image"  style="height:23rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
         <div class="card-body d-flex flex-column">
@@ -369,7 +369,7 @@
 
   <div class="row">
             
-    <div v-for="person in roundtable_speakers" class="card col-lg-3 col-md-3">
+    <div v-for="person in roundtable_speakers" class="card col-lg-2 col-md-2">
       <a v-bind:href="people[person].more">
         <img v-bind:src="people[person].image"  style="height:23rem; padding-top:0.75rem" class="card-img-top" v-bind:alt="people[person].name">
         <div class="card-body d-flex flex-column">
@@ -591,7 +591,7 @@ var data = {
         {
           time: '9:00 AM',
           label: "Welcome and Opening Remarks",
-          status: "5 mins"
+          status: "[5 mins]"
         }
       ]
     },
@@ -603,18 +603,30 @@ var data = {
         {
           time: '09:05 AM',
           presenter: 'Hans_Constandt',
-          status: "45 mins + 10 mins Q&A"
+          status: "[45 mins + 10 mins Q&A]"
         }
       ]
     },
     {
-      label: "Panel Discussion #1",
+      label: "Panel Discussion 1: Future of Personalized Health with Knowledge Graphs",
       chair: "Deborah McGuinness",
       presentations: [
         {
           time: "10:00 AM",
-          presenter: 'panel1',
-          status: "30 mins"},      
+          presenter: 'jans_aasman',
+        },
+        {
+          time: "",
+          presenter: 'Krishna_Bulusu',
+        }, 
+        {
+          time: "",
+          presenter: 'Hans_Constandt_Panel',
+        }, 
+        {
+          time: "",
+          presenter: 'Tanzeem_Choudhury',
+        },        
       ]
     },
     {
@@ -623,17 +635,17 @@ var data = {
         {
           time: '10:30 AM',
           presenter: 'Kai_Preuss',
-          status: "30 mins"
+          status: "[30 mins]"
         },
         {
           time: '10:30 AM',
           presenter: 'Amar_Doshi',
-          status: "30 mins"
+          status: "[30 mins]"
         },
         {
           time: '10:30 AM',
           presenter: 'Ryan_Chandler',
-          status: "30 mins"
+          status: "[30 mins]"
         },
       ]
     },
@@ -644,7 +656,7 @@ var data = {
         {
           time: '11:00 AM',
           presenter: 'AstraZeneca',
-          status: "30 mins"
+          status: "[30 mins]"
         },
       ]
     },
@@ -655,17 +667,17 @@ var data = {
         {
           time: '11:30 AM',
           presenter: 'maulik_kamdar',
-          status: "15 mins + 5 mins Q&A"
+          status: "[15 mins + 5 mins Q&A]"
         },
         {
           time: '11:50 AM',
           presenter: 'Adrianna_Janik',
-          status: "15 mins + 5 mins Q&A"
+          status: "[15 mins + 5 mins Q&A]"
         },
         {
           time: '12:10 PM',
           presenter: 'Aniwaa_Owusu_Obeng',
-          status: "15 mins + 5 mins Q&A"
+          status: "[15 mins + 5 mins Q&A]"
         },
         {
           time: '12:30',
@@ -680,7 +692,7 @@ var data = {
         {
           time: '1:30 PM',
           presenter: 'Subha_Madhavan',
-          status: "45 mins + 15 mins Q&A"
+          status: "[45 mins + 15 mins Q&A]"
         }
       ]
     },
@@ -691,27 +703,27 @@ var data = {
         {
           time: '2:30 PM',
           presenter: 'Henrique_Santos',
-          status: "5 mins"
+          status: "[5 mins]"
         },
         {
           time: '2:35 PM',
           presenter: 'deborah_mcguinness_short_talk',
-          status: "5 mins"
+          status: "[5 mins]"
         },
         {
           time: '2:40 PM',
           presenter: 'todor',
-          status: "5 mins"
+          status: "[5 mins]"
         },
         {
           time: '2:45 PM',
           presenter: 'Syed',
-          status: "5 mins"
+          status: "[5 mins]"
         },
         {
           time: '2:50 PM',
           presenter: 'sujit_pal',
-          status: "5 mins"
+          status: "[5 mins]"
         },
 
         // {
@@ -727,17 +739,17 @@ var data = {
         {
           time: '3:00 PM',
           presenter: 'Kai_Preuss_2',
-          status: "30 mins"
+          status: "[30 mins]"
         },
         {
           time: '3:00 PM',
           presenter: 'Amar_Doshi',
-          status: "30 mins"
+          status: "[30 mins]"
         },
         {
           time: '3:00 PM',
           presenter: 'Ryan_Chandler',
-          status: "30 mins"
+          status: "[30 mins]"
         },
       ]
     },
@@ -748,24 +760,36 @@ var data = {
         {
           time: '3:30 PM',
           presenter: 'brian_martin',
-          status: "15 mins + 5 mins Q&A"
+          status: "[15 mins + 5 mins Q&A]"
         },
         {
           time: '3:50 PM',
           presenter: 'elisa_kendall',
-          status: "15 mins + 5 mins Q&A"
+          status: "[15 mins + 5 mins Q&A]"
         },
       ]
     },
     {
-      label: "Panel Discussion #2",
+      label: "Panel Discussion 2: Generating and Querying Graphs with LLM",
       chair: "Oshani Seneviratne",
       presentations: [
+        // {
+        //   time: "04:10 PM",
+        //   presenter: 'panel2',
+        //   status: "[40 mins]"
+        // },      
         {
           time: "04:10 PM",
-          presenter: 'panel2',
-          status: "40 mins"
-        },      
+          presenter: 'Subha_Madhavan_Panel',
+        },     
+        {
+          time: "",
+          presenter: 'brian_martin_panel',
+        },     
+        {
+          time: "",
+          presenter: 'Berenice_Wulbrecht',
+        },
       ]
     },
     {
@@ -803,6 +827,12 @@ var data = {
       title: "Revolutionizing Healthcare in Europe: Unleashing the Power of Knowledge Graphs for Personal Health Data Vaults",
       more: "hans.html"
     },
+    'Hans_Constandt_Panel': {
+      name: "Hans Constandt",
+      page: "https://www.linkedin.com/in/hansconstandt",
+      image: "assets/img/speakers/Hans_Constandt.jpeg",
+      affiliation: "FAQIR",
+    },
     'Subha_Madhavan': {
       name: "Subha Madhavan",
       page: "https://www.linkedin.com/in/subhamadhavan",
@@ -810,6 +840,12 @@ var data = {
       affiliation: "Pfizer",
       title: "How Multimodal Data Combined with Large-Scale AI Is Transforming Research & Development of Medicines",
       more: "subha.html"
+    },
+    'Subha_Madhavan_Panel': {
+      name: "Subha Madhavan",
+      page: "https://www.linkedin.com/in/subhamadhavan",
+      image: "assets/img/speakers/Subha_Madhavan.jpg",
+      affiliation: "Pfizer",
     },
     'jamie_mccusker': {
       name: "Jamie McCusker",
@@ -882,6 +918,12 @@ var data = {
       affiliation: "Abbvie",
       title: "Graphs for Good - Hypotheses Generation for Rare Disease Treatment",
     },
+    'brian_martin_panel': {
+      name: "Brian Martin",
+      page: "https://www.linkedin.com/in/brianm1028",
+      image: "assets/img/speakers/Brian.jpeg",
+      affiliation: "Abbvie",
+    },
     'elisa_kendall': {
       name: "Elisa Kendall",
       page: "https://www.linkedin.com/in/elisakendall",
@@ -907,6 +949,14 @@ var data = {
       image: "assets/img/speakers/Krishna.jpeg",
       affiliation: "AstraZeneca",
       title: "Knowledge Graphs for Precision Oncology",
+      more: "krishna.html"
+    },
+    'Krishna_Bulusu': {
+      name: "Krishna Bulusu",
+      page: "",
+      image: "assets/img/speakers/Krishna.jpeg",
+      affiliation: "AstraZeneca",
+      title: "",
       more: "krishna.html"
     },
     'session1q&a': {
@@ -962,7 +1012,6 @@ var data = {
       page: "https://www.linkedin.com/in/berenicewulbrecht",
       image: "assets/img/speakers/Berenice.jpeg",
       affiliation: "Ontoforce",
-      title: "",
     },
     'Kai_Preuss': {
       name: "Kai Preuss",
@@ -992,11 +1041,11 @@ var data = {
       affiliation: "Knowledge Graph Engineer at AbbVie",
       title: "R&D Convergence Hub",
     },
-    'Tanzeem_K_Chaudhury': {
-      name: "Tanzeem Chaudhury",
+    'Tanzeem_Choudhury': {
+      name: "Tanzeem Choudhury",
       page: "https://tech.cornell.edu/people/tanzeem-choudhury/",
       image: "assets/img/speakers/Tanzeem.jpeg",
-      affiliation: "Cornell University",
+      affiliation: "Cornell Tech",
       title: "",
     },
 
@@ -1006,12 +1055,13 @@ var data = {
     'Subha_Madhavan',
   ],
   panelists: [
-    'Hans_Constandt',
     'jans_aasman',
-    'Tanzeem_K_Chaudhury',
+    'Krishna_Bulusu',
+    'Tanzeem_Choudhury',
+    'Hans_Constandt_Panel',
     'Subha_Madhavan',
-    'Berenice_Wulbrecht',
     'brian_martin',
+    'Berenice_Wulbrecht',
   ],
   presenters: [
     'maulik_kamdar',
